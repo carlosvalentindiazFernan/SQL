@@ -1,0 +1,7 @@
+SELECT N, 
+    CASE 
+        WHEN P IS NULL 
+            THEN 'Root' 
+        ELSE DECODE(CONNECT_BY_ISLEAF, 1, 'Leaf', 'Inner') 
+    END TP FROM BST START 
+    WITH P IS NULL CONNECT BY PRIOR N = P ORDER BY 1;
